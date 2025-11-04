@@ -1,0 +1,141 @@
+﻿<!-- <project sdk="microsoft.net.sdk">
+  <propertygroup>
+    <targetframework>net8.0</targetframework>
+    <implicitusings>enable</implicitusings>
+    <nullable>enable</nullable>
+    <generateruntimeconfigurationfiles>true</generateruntimeconfigurationfiles>
+    <awsprojecttype>lambda</awsprojecttype>
+     this property makes the build directory similar to a publish directory and helps the aws .net lambda mock test tool find project dependencies. 
+    <copylocallockfileassemblies>true</copylocallockfileassemblies>
+     generate ready to run images during publishing to improve cold start time. 
+    <publishreadytorun>true</publishreadytorun>
+  </propertygroup>
+  <itemgroup>
+    <compile include="obj\debug\net8.0\.netcoreapp,version=v8.0.assemblyattributes.cs" />
+    <compile include="obj\debug\net8.0\awslambda1.assemblyinfo.cs" />
+    <compile include="obj\debug\net8.0\awslambda1.globalusings.g.cs" />
+    <compile include="obj\release\net8.0\linux-x64\.netcoreapp,version=v8.0.assemblyattributes.cs" />
+    <compile include="obj\release\net8.0\linux-x64\awslambda1.assemblyinfo.cs" />
+    <compile include="obj\release\net8.0\linux-x64\awslambda1.globalusings.g.cs" />
+  </itemgroup>
+  <itemgroup>
+    <content include="bin\debug\net8.0\aws-lambda-tools-defaults.json" />
+    <content include="bin\debug\net8.0\awslambda1.deps.json" />
+    <content include="bin\debug\net8.0\awslambda1.runtimeconfig.json" />
+    <content include="bin\debug\net8.0\sec-fh.json" />
+    <content include="bin\release\net8.0\linux-x64\aws-lambda-tools-defaults.json" />
+    <content include="bin\release\net8.0\linux-x64\awslambda1.deps.json" />
+    <content include="bin\release\net8.0\linux-x64\awslambda1.runtimeconfig.json" />
+    <content include="bin\release\net8.0\linux-x64\sec-fh.json" />
+    <content include="bin\release\net8.0\publish\aws-lambda-tools-defaults.json" />
+    <content include="bin\release\net8.0\publish\awslambda1.deps.json" />
+    <content include="bin\release\net8.0\publish\awslambda1.runtimeconfig.json" />
+    <content include="bin\release\net8.0\publish\sec-fh.json" />
+    <content include="obj\awslambda1.csproj.nuget.dgspec.json" />
+    <content include="obj\debug\net8.0\awslambda1.csproj.filelistabsolute.txt" />
+    <content include="obj\project.assets.json" />
+    <content include="obj\release\net8.0\linux-x64\awslambda1.csproj.filelistabsolute.txt" />
+    <content include="obj\release\net8.0\linux-x64\publishoutputs.6a12d5296a.txt" />
+  </itemgroup>
+  <itemgroup>
+    <none include="bin\debug\net8.0\amazon.lambda.apigatewayevents.dll" />
+    <none include="bin\debug\net8.0\amazon.lambda.core.dll" />
+    <none include="bin\debug\net8.0\amazon.lambda.serialization.systemtextjson.dll" />
+    <none include="bin\debug\net8.0\awslambda1.dll" />
+    <none include="bin\debug\net8.0\newtonsoft.json.dll" />
+    <none include="bin\release\net8.0\awslambda1.zip" />
+    <none include="bin\release\net8.0\linux-x64\amazon.lambda.apigatewayevents.dll" />
+    <none include="bin\release\net8.0\linux-x64\amazon.lambda.core.dll" />
+    <none include="bin\release\net8.0\linux-x64\amazon.lambda.serialization.systemtextjson.dll" />
+    <none include="bin\release\net8.0\linux-x64\awslambda1.dll" />
+    <none include="bin\release\net8.0\linux-x64\awslambda1.pdb" />
+    <none include="bin\release\net8.0\linux-x64\newtonsoft.json.dll" />
+    <none include="bin\release\net8.0\publish\amazon.lambda.apigatewayevents.dll" />
+    <none include="bin\release\net8.0\publish\amazon.lambda.core.dll" />
+    <none include="bin\release\net8.0\publish\amazon.lambda.serialization.systemtextjson.dll" />
+    <none include="bin\release\net8.0\publish\awslambda1.dll" />
+    <none include="bin\release\net8.0\publish\awslambda1.pdb" />
+    <none include="bin\release\net8.0\publish\newtonsoft.json.dll" />
+    <none include="obj\awslambda1.csproj.nuget.g.props" />
+    <none include="obj\awslambda1.csproj.nuget.g.targets" />
+    <none include="obj\debug\net8.0\awslambda1.assemblyinfoinputs.cache" />
+    <none include="obj\debug\net8.0\awslambda1.assets.cache" />
+    <none include="obj\debug\net8.0\awslambda1.csproj.assemblyreference.cache" />
+    <none include="obj\debug\net8.0\awslambda1.csproj.buildwithskipanalyzers" />
+    <none include="obj\debug\net8.0\awslambda1.csproj.corecompileinputs.cache" />
+    <none include="obj\debug\net8.0\awslambda1.csproj.up2date" />
+    <none include="obj\debug\net8.0\awslambda1.dll" />
+    <none include="obj\debug\net8.0\awslambda1.generatedmsbuildeditorconfig.editorconfig" />
+    <none include="obj\debug\net8.0\awslambda1.genruntimeconfig.cache" />
+    <none include="obj\debug\net8.0\awslambda1.pdb" />
+    <none include="obj\debug\net8.0\refint\awslambda1.dll" />
+    <none include="obj\project.nuget.cache" />
+    <none include="obj\release\net8.0\linux-x64\awslambda1.assemblyinfoinputs.cache" />
+    <none include="obj\release\net8.0\linux-x64\awslambda1.assets.cache" />
+    <none include="obj\release\net8.0\linux-x64\awslambda1.csproj.assemblyreference.cache" />
+    <none include="obj\release\net8.0\linux-x64\awslambda1.csproj.corecompileinputs.cache" />
+    <none include="obj\release\net8.0\linux-x64\awslambda1.csproj.up2date" />
+    <none include="obj\release\net8.0\linux-x64\awslambda1.dll" />
+    <none include="obj\release\net8.0\linux-x64\awslambda1.generatedmsbuildeditorconfig.editorconfig" />
+    <none include="obj\release\net8.0\linux-x64\awslambda1.genruntimeconfig.cache" />
+    <none include="obj\release\net8.0\linux-x64\awslambda1.pdb" />
+    <none include="obj\release\net8.0\linux-x64\r2r\amazon.lambda.apigatewayevents.dll" />
+    <none include="obj\release\net8.0\linux-x64\r2r\amazon.lambda.core.dll" />
+    <none include="obj\release\net8.0\linux-x64\r2r\amazon.lambda.serialization.systemtextjson.dll" />
+    <none include="obj\release\net8.0\linux-x64\r2r\awslambda1.dll" />
+    <none include="obj\release\net8.0\linux-x64\r2r\newtonsoft.json.dll" />
+    <none include="obj\release\net8.0\linux-x64\refint\awslambda1.dll" />
+    <none include="obj\release\net8.0\linux-x64\ref\awslambda1.dll" />
+  </itemgroup>
+  <itemgroup>
+    <packagereference include="amazon.lambda.apigatewayevents" version="2.7.1" />
+    <packagereference include="amazon.lambda.core" version="2.5.0" />
+    <packagereference include="amazon.lambda.serialization.systemtextjson" version="2.4.4" />
+    <packagereference include="newtonsoft.json" version="13.0.4" />
+  </itemgroup>
+  <itemgroup>
+    <none update="sec-fh.json">
+      <copytooutputdirectory>always</copytooutputdirectory>
+    </none>
+    <none update="aws-lambda-tools-defaults.json">
+      <copytooutputdirectory>always</copytooutputdirectory>
+    </none>
+  </itemgroup>
+  <itemgroup>
+    <folder include="obj\debug\net8.0\ref\" />
+  </itemgroup>
+</project>
+
+
+
+ -->
+
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <AWSProjectType>Lambda</AWSProjectType>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <PublishReadyToRun>true</PublishReadyToRun>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Amazon.Lambda.APIGatewayEvents" Version="2.7.1" />
+    <PackageReference Include="Amazon.Lambda.Core" Version="2.5.0" />
+    <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.4.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="sec-FH.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="aws-lambda-tools-defaults.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  </Project>
