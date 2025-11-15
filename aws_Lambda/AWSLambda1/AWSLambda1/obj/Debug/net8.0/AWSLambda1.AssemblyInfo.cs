@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AWSLambda1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+580f3236f1298795e6e749e7adac42ef072d8fe1")]
 [assembly: System.Reflection.AssemblyProductAttribute("AWSLambda1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AWSLambda1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

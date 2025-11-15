@@ -1,5 +1,7 @@
 ﻿using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
+using Amazon.SimpleNotificationService;
+using Amazon.SimpleNotificationService.Model;
 using Newtonsoft.Json;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -16,7 +18,7 @@ public class Function
 
     //public CreateProductResult FunctionHandler(CreateProductRequest input, ILambdaContext context) 
     //{
-    //    context.Logger.LogLine("Hello first lamda function");
+    //    context.Logger.LogLine("Hello code from lamda_code.txt");
 
     //    // Assume Product is Saved to DB
     //    var response = new CreateProductResponse();
@@ -32,55 +34,56 @@ public class Function
     //        Response = response
     //    };
     //}
-  
+
     private const string LayerFilePath = "/opt/lamda_code.txt";
 
-    public CreateProductResult FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
+    public async Task<CreateProductResult> FunctionHandlerAsync(APIGatewayProxyRequest request, ILambdaContext context)
     {
         context.Logger.LogLine("Hello first lamda function");
 
         string fileContent = "File not found.";
 
-        context.Logger.LogLine("Starting /opt directory diagnostic...");
+        //-----------here doing ** S3 bucket se layer m lamda_code.txt wala jip floder baar baar take and upload on lambda function when we run this code----------
+        //context.Logger.LogLine("Starting /opt directory diagnostic...");
 
-        try
-        {
-            if (Directory.Exists("/opt"))
-            {
-                // /opt के अंदर की सभी फाइलों को list करें
-                string[] allFiles = Directory.GetFiles("/opt", "*", SearchOption.AllDirectories);
-                context.Logger.LogLine($"Total files found in /opt: {allFiles.Length}");
-                foreach (var file in allFiles)
-                {
-                    // यह लाइन आपको सही path बताएगी!
-                    context.Logger.LogLine($"Found file at absolute path: {file}");
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            context.Logger.LogLine($"Diagnostic Error: {ex.Message}");
-        }
+        //try
+        //{
+        //    if (Directory.Exists("/opt"))
+        //    {
+        //        // /opt के अंदर की सभी फाइलों को list करें
+        //        string[] allFiles = Directory.GetFiles("/opt", "*", SearchOption.AllDirectories);
+        //        context.Logger.LogLine($"Total files found in /opt: {allFiles.Length}");
+        //        foreach (var file in allFiles)
+        //        {
+        //            // यह लाइन आपको सही path बताएगी!
+        //            context.Logger.LogLine($"Found file at absolute path: {file}");
+        //        }
+        //    }
+        //}
+        //catch (Exception ex)
+        //{
+        //    context.Logger.LogLine($"Diagnostic Error: {ex.Message}");
+        //}
 
-        // 💡 Layer से text file पढ़ने का Code
-        try
-        {
-            // File.Exists से जांचें कि file /opt/ directory में मौजूद है या नहीं
-            if (File.Exists(LayerFilePath))
-            {
-                // File.ReadAllText से content पढ़ें
-                fileContent = File.ReadAllText(LayerFilePath);
-                context.Logger.LogLine($"Successfully read file from Layer. Content: {fileContent}");
-            }
-            else
-            {
-                context.Logger.LogLine("ERROR: Layer file not found at /opt/lamda_code.txt");
-            }
-        }
-        catch (Exception ex)
-        {
-            context.Logger.LogLine($"ERROR reading file from Layer: {ex.Message}");
-        }
+        //// 💡 Layer से text file पढ़ने का Code
+        //try
+        //{
+        //    // File.Exists से जांचें कि file /opt/ directory में मौजूद है या नहीं
+        //    if (File.Exists(LayerFilePath))
+        //    {
+        //        // File.ReadAllText से content पढ़ें
+        //        fileContent = File.ReadAllText(LayerFilePath);
+        //        context.Logger.LogLine($"Successfully read file from Layer. Content: {fileContent}");
+        //    }
+        //    else
+        //    {
+        //        context.Logger.LogLine("ERROR: Layer file not found at /opt/lamda_code.txt");
+        //    }
+        //}
+        //catch (Exception ex)
+        //{
+        //    context.Logger.LogLine($"ERROR reading file from Layer: {ex.Message}");
+        //}
             // Query String से डेटा पढ़ें
             string urlName = request.QueryStringParameters?["name"];
         string urlDesc = request.QueryStringParameters?["description"];
@@ -128,6 +131,25 @@ public class Function
             Name = finalName,
             Description = finalDescription
         };
+
+        // -------------- Adding destination ----------------✅ Publish the result to SNS topic
+        //var snsClient = new AmazonSimpleNotificationServiceClient();
+        //var topicArn = "arn:aws:sns:ap-south-1:123456789012:MyLambdaTopic"; // 🔸 replace with your topic ARN
+
+        //var message = JsonConvert.SerializeObject(response);
+
+        //var publishRequest = new PublishRequest
+        //{
+        //    TopicArn = topicArn,
+        //    Message = message,
+        //    Subject = "Lambda Product Created"
+        //};
+
+        //var publishResponse = await snsClient.PublishAsync(publishRequest);
+        //context.Logger.LogLine($"SNS Message ID: {publishResponse.MessageId}");
+        //context.Logger.LogLine($"SequenceNumber: {publishResponse.SequenceNumber}");
+        //context.Logger.LogLine($"StatusCode: {publishResponse.HttpStatusCode}");
+        //context.Logger.LogLine($"RequestId: {publishResponse.ResponseMetadata.RequestId}");
 
         // D. परिणाम वापस करें
         return new CreateProductResult
